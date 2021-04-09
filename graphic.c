@@ -23,8 +23,9 @@ void choice_2(struct arr_col_2 arr[], int row);
 
 void draw_bar_graph_col_1(struct arr_col_1 arr[], int row);
 void draw_bar_graph_col_2(struct arr_col_2 arr[], int row);
-/*
+
 void draw_line_graph_col_1(struct arr_col_1 arr[], int row);
+/*
 void draw_line_graph_col_2(struct arr_col_2 arr[], int row);
 
 void draw_bar_with_line_graph_col_1(struct arr_col_1 arr[], int row);
@@ -81,7 +82,7 @@ void col_1(FILE *file, int row){
 
 	for(i = 0; i < row; i++){
 		fscanf(file, "%d", &arr1[i].x);
-		printf("\n%d\n", arr1[i].x);
+		printf("\n%d", arr1[i].x);
 	}
 	getch();
 	choice_1(arr1, row);
@@ -95,7 +96,7 @@ void col_2(FILE *file, int row){
 
 	for(i = 0; i < row; i++){
 		fscanf(file, "%d,%d", &arr2[i].x, &arr2[i].y);
-		printf("\n%d %d\n", arr2[i].x, arr2[i].y);
+		printf("\n%d %d", arr2[i].x, arr2[i].y);
 	}
 	getch();
 	choice_2(arr2, row);
@@ -111,10 +112,10 @@ void choice_1(struct arr_col_1 arr1[], int row){
 			case 1:
 				draw_bar_graph_col_1(arr1, row);
 				break;
-		   /*   	case 2:
+			case 2:
 				draw_line_graph_col_1(arr1, row);
 				break;
-			case 3:
+		   /*	case 3:
 				draw_bar_with_line_col_1(arr1, row);
 				break;
 		   */
@@ -159,7 +160,7 @@ void choice_2(struct arr_col_2 arr2[], int row){
 int draw_x_y_axis_col_1(int arr1[], int row){
 	int i = 0;
 	int max = arr1[i];
-	int x1 = 100, y1 = 100, x2, y2;
+	int x1 = 50, y1 = 100, x2, y2;
 	for(i = 1; i < row; i++){
 		if(arr1[i] > max){
 			max = arr1[i];
@@ -184,7 +185,7 @@ int draw_x_y_axis_col_1(int arr1[], int row){
 
 	setcolor(BLACK);
 	line(x1, y1, x2, y2);
-	line(x1, y2, x2*9, y2);
+	line(x1, y2, x2*15, y2);
 	return y2;
 
 }
@@ -195,7 +196,7 @@ int draw_x_y_axis_col_2(int arr1[], int arr2[], int row){
 	int max1 = arr1[i];
 	int max2 = arr2[i];
 
-	int x1 = 100, y1 = 100, x2, y2;
+	int x1 = 50, y1 = 100, x2, y2;
 
 	for(i = 1; i < row; i++){
 		if(arr1[i] > max1){
@@ -212,8 +213,9 @@ int draw_x_y_axis_col_2(int arr1[], int arr2[], int row){
 		max2 /= 100;
 	}
 	if(max2 > 250){
-		for(i = 0; i < row; i++);
+		for(i = 0; i < row; i++){
 			arr2[i] /= 10;
+		}
 		max2 /= 10;
 	}
 
@@ -223,7 +225,7 @@ int draw_x_y_axis_col_2(int arr1[], int arr2[], int row){
 	printf("%d",y2);
 	setcolor(BLACK);
 	line(x1, y1, x2, y2);
-	line(x1, y2, x2*6, y2);
+	line(x1, y2, x2*15, y2);
 	return y2;
 }
 
@@ -233,7 +235,7 @@ void draw_bar_graph_col_1(struct arr_col_1 arr[], int row){
 	int *arr_copy = (int*)malloc(row * sizeof(int));
 
 	int i, count = 0;
-	int left = 110, right, top, bottom;
+	int left = 60, right, top, bottom;
 
 	for(i = 0; i < row; i++){
 		arr_copy[i] = arr[i].x;
@@ -262,17 +264,98 @@ void draw_bar_graph_col_1(struct arr_col_1 arr[], int row){
 		}
 	}
 	getch();
+
+	free(arr_copy);
 	cleardevice();
 }
 
 void draw_bar_graph_col_2(struct arr_col_2 arr[], int row){
 	int *arr_copy_1 = (int*)malloc(row * sizeof(int));
 	int *arr_copy_2 = (int*)malloc(row * sizeof(int));
-	int i;
+	int i, count = 0;
+	int left = 60, top, right, bottom;
 
 	for(i = 0; i < row; i++){
 		arr_copy_1[i] = arr[i].x;
 		arr_copy_2[i] = arr[i].y;
 	}
-	draw_x_y_axis_col_2(arr_copy_1, arr_copy_2, row);
+	bottom  = draw_x_y_axis_col_2(arr_copy_1, arr_copy_2, row);
+
+	if(row >= 20){
+		for(i = 0; i < row; i++){
+			left += count;
+			right = left + 10;
+			top = bottom - arr_copy_2[i];
+			setfillstyle(SOLID_FILL, BLUE);
+			bar(left, top, right, bottom);
+			delay(100);
+			count = 20;
+		}
+	}else{
+		for(i = 0; i < row; i++){
+			left += count;
+			right = left + 20;
+			top = bottom - arr_copy_2[i];
+			setfillstyle(SOLID_FILL, BLUE);
+			bar(left, top, right, bottom);
+			delay(100);
+			count = 30;
+		}
+	}
+	getch();
+	free(arr_copy_1);
+	free(arr_copy_2);
+
+	cleardevice();
+}
+
+void draw_line_graph_col_1(struct arr_col_1 arr[], int row){
+	struct array *dta = (struct array*)malloc(row * sizeof(struct array));
+
+	int *arr_copy = (int*)malloc(row * sizeof(int));
+
+	int i, count = 0;
+	int left = 60, right, top, bottom;
+
+	for(i = 0; i < row; i++){
+		arr_copy[i] = arr[i].x;
+	}
+
+	bottom = draw_x_y_axis_col_1(arr_copy, row);
+	if(row >= 20){
+		for(i = 0; i < row; i++){
+			left += count;
+			right = left + 10;
+			top = bottom - arr_copy[i];
+			dta[i].x1 = (left + right)/2;
+			dta[i].y1 = top;
+			count = 20;
+		}
+
+		for(i = 0; i < row -1; i++){
+			setlinestyle(SOLID_LINE, 0, 2);
+			line(dta[i].x1, dta[i].y1, dta[i+1].x1, dta[i+1].y1);
+			delay(100);
+		}
+	}else{
+		for(i = 0; i < row; i++){
+			left += count;
+			right = left + 20;
+			top = bottom - arr_copy[i];
+			dta[i].x1 = (left + right)/ 2;
+			dta[i].y1 = top;
+			count = 30;
+		}
+
+		for(i= 0; i < row - 1; i++){
+			setlinestyle(SOLID_LINE, 0, 2);
+			line(dta[i].x1, dta[i].y1, dta[i+1].x1, dta[i+1].y1);
+			delay(100);
+		}
+	}
+
+	free(arr_copy);
+	free(dta);
+	getch();
+	cleardevice();
 }
