@@ -2,7 +2,7 @@
 #include <conio.h>
 #include <graphics.h>
 #include <stdlib.h>
-#include "data.h"
+#include "data_collection.h"
 
 int main(){
 	FILE* file;
