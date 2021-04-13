@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "data_vizualization.h"
+#include "DATAV.h"
 
 void choice_1(struct arr_col_1 arr1[], int row);
 void choice_2(struct arr_col_2 arr2[], int row);
@@ -46,11 +46,10 @@ void choice_1(struct arr_col_1 arr1[], int row){
 			case 2:
 				draw_line_graph_col_1(arr1, row);
 				break;
-		    /*	case 3:
-				draw_bar_with_line_col_1(arr1, row);
+			case 3:
+				draw_bar_with_line_graph_col_1(arr1, row);
 				break;
-
-		    */	case 4:
+			case 4:
 				printf("Exitting.....");
 				exit(0);
 			default:
@@ -71,13 +70,13 @@ void choice_2(struct arr_col_2 arr2[], int row){
 			case 1:
 				draw_bar_graph_col_2(arr2, row);
 				break;
-		   /*	case 2:
+			case 2:
 				draw_line_graph_col_2(arr2, row);
 				break;
 			case 3:
-				draw_bar_with_line_col_2(arr2, row);
+				draw_bar_with_line_graph_col_2(arr2, row);
 				break;
-		   */	case 4:
+			case 4:
 				printf("Exitting.....");
 				exit(0);
 			default:
