@@ -14,13 +14,13 @@ typedef struct array{
 
 void draw_bar_graph_col_1(struct arr_col_1 arr[], int row);
 void draw_bar_graph_col_2(struct arr_col_2 arr[], int row);
+
 void draw_line_graph_col_1(struct arr_col_1 arr[], int row);
-/*
 void draw_line_graph_col_2(struct arr_col_2 arr[], int row);
 
 void draw_bar_with_line_graph_col_1(struct arr_col_1 arr[], int row);
 void draw_bar_with_line_graph_col_2(struct arr_col_2 arr[], int row);
-*/
+
 
 
 int draw_x_y_axis_col_1(int arr1[], int row){
@@ -50,8 +50,11 @@ int draw_x_y_axis_col_1(int arr1[], int row){
 	y2 = y1 + 100 + max;
 
 	setcolor(BLACK);
+	outtextxy(x1 - 10, y1, "Y");
 	line(x1, y1, x2, y2);
+	outtextxy(x2 - 10, y2 + 10, "O");
 	line(x1, y2, x2*15, y2);
+	outtextxy(x2*12, y2 + 10, "X");
 	return y2;
 
 }
@@ -90,6 +93,9 @@ int draw_x_y_axis_col_2(int arr1[], int arr2[], int row){
 	y2 = y1 + 100 + max2;
 	printf("%d",y2);
 	setcolor(BLACK);
+	outtextxy(x1 - 10, y1, "Y");
+	outtextxy(x2 - 10, y2 + 10, "O");
+	outtextxy(x2*12, y2 + 10, "X");
 	line(x1, y1, x2, y2);
 	line(x1, y2, x2*15, y2);
 	return y2;
@@ -115,7 +121,7 @@ void draw_bar_graph_col_1(struct arr_col_1 arr[], int row){
 			top = bottom - arr_copy[i];
 			setfillstyle(SOLID_FILL, BLUE);
 			bar(left, top, right, bottom);
-			delay(100);
+			delay(50);
 			count = 20;
 		}
 	}else{
@@ -154,7 +160,7 @@ void draw_bar_graph_col_2(struct arr_col_2 arr[], int row){
 			top = bottom - arr_copy_2[i];
 			setfillstyle(SOLID_FILL, BLUE);
 			bar(left, top, right, bottom);
-			delay(100);
+			delay(50);
 			count = 20;
 		}
 	}else{
@@ -201,7 +207,7 @@ void draw_line_graph_col_1(struct arr_col_1 arr[], int row){
 		for(i = 0; i < row -1; i++){
 			setlinestyle(SOLID_LINE, 0, 2);
 			line(dta[i].x1, dta[i].y1, dta[i+1].x1, dta[i+1].y1);
-			delay(100);
+			delay(50);
 		}
 	}else{
 		for(i = 0; i < row; i++){
@@ -222,6 +228,168 @@ void draw_line_graph_col_1(struct arr_col_1 arr[], int row){
 
 	free(arr_copy);
 	free(dta);
+	getch();
+	cleardevice();
+}
+
+void draw_line_graph_col_2(struct arr_col_2 arr[], int row){
+	struct array *dta = (struct array*)malloc(row * sizeof(struct array));
+
+	int *arr_copy_1 = (int*)malloc(row * sizeof(int));
+	int *arr_copy_2 = (int*)malloc(row * sizeof(int));
+
+	int i, count = 0;
+	int left = 60, right, top, bottom;
+
+	for(i = 0; i < row; i++){
+		arr_copy_1[i] = arr[i].x;
+		arr_copy_2[i] = arr[i].y;
+	}
+
+	bottom = draw_x_y_axis_col_2(arr_copy_1, arr_copy_2, row);
+
+	if(row >= 20){
+		for(i = 0; i < row; i++){
+			left += count;
+			right = left + 10;
+			top = bottom - arr_copy_2[i];
+			dta[i].x1 = (left + right)/2;
+			dta[i].y1 = top;
+			count = 20;
+		}
+
+		for(i = 0; i < row -1; i++){
+			setlinestyle(SOLID_LINE, 0, 2);
+			line(dta[i].x1, dta[i].y1, dta[i+1].x1, dta[i+1].y1);
+			delay(50);
+		}
+	}else{
+		for(i = 0; i < row; i++){
+			left += count;
+			right = left + 20;
+			top = bottom - arr_copy_2[i];
+			dta[i].x1 = (left + right)/ 2;
+			dta[i].y1 = top;
+			count = 30;
+		}
+
+		for(i= 0; i < row - 1; i++){
+			setlinestyle(SOLID_LINE, 0, 2);
+			line(dta[i].x1, dta[i].y1, dta[i+1].x1, dta[i+1].y1);
+			delay(100);
+		}
+	}
+	free(arr_copy_1);
+	free(arr_copy_2);
+	free(dta);
+	getch();
+	cleardevice();
+}
+
+void draw_bar_with_line_graph_col_1(struct arr_col_1 arr[], int row){
+	struct array *dta = (struct array*)malloc(row * sizeof(struct array));
+	int *arr_copy = (int*)malloc(row * sizeof(int));
+
+	int i, count = 0;
+	int left = 60, right, top, bottom;
+
+	for(i = 0; i < row; i++){
+		arr_copy[i] = arr[i].x;
+	}
+
+	bottom = draw_x_y_axis_col_1(arr_copy, row);
+	if(row >= 20){
+		for(i = 0; i < row; i++){
+			left += count;
+			right = left + 10;
+			top = bottom - arr_copy[i];
+			dta[i].x1 = (left + right)/2;
+			dta[i].y1 = top;
+			setfillstyle(SOLID_FILL, BLUE);
+			bar(left, top, right, bottom);
+			delay(50);
+			count = 20;
+		}
+		for(i = 0; i < row -1; i++){
+			setlinestyle(SOLID_LINE, 0, 2);
+			line(dta[i].x1, dta[i].y1, dta[i+1].x1, dta[i+1].y1);
+			delay(50);
+		}
+	}else{
+		for(i = 0; i < row; i++){
+			left += count;
+			right = left + 20;
+			top = bottom - arr_copy[i];
+			dta[i].x1 = (left + right)/2;
+			dta[i].y1 = top;
+			setfillstyle(SOLID_FILL, BLUE);
+			bar(left, top, right, bottom);
+			delay(100);
+			count = 30;
+		}
+		for(i = 0; i < row -1; i++){
+			setlinestyle(SOLID_LINE, 0, 2);
+			line(dta[i].x1, dta[i].y1, dta[i+1].x1, dta[i+1].y1);
+			delay(100);
+		}
+	}
+	getch();
+	free(arr_copy);
+	cleardevice();
+}
+
+void draw_bar_with_line_graph_col_2(struct arr_col_2 arr[], int row){
+	struct array *dta = (struct array*)malloc(row * sizeof(struct array));
+
+	int *arr_copy_1 = (int*)malloc(row * sizeof(int));
+	int *arr_copy_2 = (int*)malloc(row * sizeof(int));
+
+	int i, count = 0;
+	int left = 60, right, top, bottom;
+
+	for(i = 0; i < row; i++){
+		arr_copy_1[i] = arr[i].x;
+		arr_copy_2[i] = arr[i].y;
+	}
+
+	bottom = draw_x_y_axis_col_2(arr_copy_1, arr_copy_2, row);
+	if(row >= 20){
+		for(i = 0; i < row; i++){
+			left += count;
+			right = left + 10;
+			top = bottom - arr_copy_2[i];
+			dta[i].x1 = (left + right)/2;
+			dta[i].y1 = top;
+			setfillstyle(SOLID_FILL, BLUE);
+			bar(left, top, right, bottom);
+			delay(50);
+			count = 20;
+		}
+		for(i = 0; i < row -1; i++){
+			setlinestyle(SOLID_LINE, 0, 2);
+			line(dta[i].x1, dta[i].y1, dta[i+1].x1, dta[i+1].y1);
+			delay(50);
+		}
+	}else{
+		for(i = 0; i < row; i++){
+			left += count;
+			right = left + 20;
+			top = bottom - arr_copy_2[i];
+			dta[i].x1 = (left + right)/2;
+			dta[i].y1 = top;
+			setfillstyle(SOLID_FILL, BLUE);
+			bar(left, top, right, bottom);
+			delay(100);
+			count = 30;
+		}
+		for(i = 0; i < row -1; i++){
+			setlinestyle(SOLID_LINE, 0, 2);
+			line(dta[i].x1, dta[i].y1, dta[i+1].x1, dta[i+1].y1);
+			delay(100);
+		}
+	}
+	free(arr_copy_1);
+	free(arr_copy_2);
 	getch();
 	cleardevice();
 }
