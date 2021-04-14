@@ -37,7 +37,7 @@ void choice_1(struct arr_col_1 arr1[], int row){
 	int choice;
 	do{
 		clrscr();
-		printf("\n1>Bar Graph \n2>Line Graph \n3>Bar with line Graph \n4>Exit \nEnter your choice = ");
+		printf("1>Bar Graph\t2>Line Graph\t3>Bar with line Graph\n4>Point with Line\t5>Point Graph\t6>Draw Curve \t7>Exit  \nEnter your choice = ");
 		scanf("%d", &choice);
 		switch(choice){
 			case 1:
@@ -50,13 +50,22 @@ void choice_1(struct arr_col_1 arr1[], int row){
 				draw_bar_with_line_graph_col_1(arr1, row);
 				break;
 			case 4:
+				draw_point_with_line_graph_col_1(arr1, row);
+				break;
+			case 5:
+				draw_point_graph_col_1(arr1, row);
+				break;
+			case 6:
+				draw_curve_graph_col_1(arr1, row);
+				break;
+			case 7:
 				printf("Exitting.....");
 				exit(0);
 			default:
 				printf("Please Enter Correct coice...");
 				break;
 		}
-	}while(choice != 4);
+	}while(choice != 7);
 
 }
 
@@ -64,7 +73,7 @@ void choice_2(struct arr_col_2 arr2[], int row){
 	int choice;
 	do{
 		clrscr();
-		printf("\n1>Bar Graph \n2>Line Graph \n3>Bar with line Graph \n4>Exit \nEnter your choice = ");
+		printf("\n1>Bar Graph \t2>Line Graph \t3>Bar with line Graph \n4>Point with graph \t5>Point graph \t6>Curve Graph \t6>Exit \nEnter your choice = ");
 		scanf("%d", &choice);
 		switch(choice){
 			case 1:
@@ -77,12 +86,21 @@ void choice_2(struct arr_col_2 arr2[], int row){
 				draw_bar_with_line_graph_col_2(arr2, row);
 				break;
 			case 4:
+				draw_point_with_line_graph_col_2(arr2, row);
+				break;
+			case 5:
+				draw_point_graph_col_2(arr2, row);
+				break;
+			case 6:
+				draw_curve_graph_col_2(arr2, row);
+				break;
+			case 7:
 				printf("Exitting.....");
 				exit(0);
 			default:
 				printf("Please Enter Correct coice...");
 				break;
 		}
-	}while(choice != 4);
+	}while(choice != 7);
 
 }
