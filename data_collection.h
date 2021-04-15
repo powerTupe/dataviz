@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "DATAV.h"
+#include "data_visualization.h"
 
 void choice_1(struct arr_col_1 arr1[], int row);
 void choice_2(struct arr_col_2 arr2[], int row);
