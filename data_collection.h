@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "data_visualization.h"
+#include "DATAV.h"
 
 void choice_1(struct arr_col_1 arr1[], int row);
 void choice_2(struct arr_col_2 arr2[], int row);
@@ -37,7 +37,7 @@ void choice_1(struct arr_col_1 arr1[], int row){
 	int choice;
 	do{
 		clrscr();
-		printf("1>Bar Graph\t2>Line Graph\t3>Bar with line Graph\n4>Point with Line\t5>Point Graph\t6>Draw Curve \t7>Exit  \nEnter your choice = ");
+		printf("1>Bar Graph  2>Line Graph  3>Bar with line Graph  4>Point with Line  5>Point Graph  6>Draw Curve  7>Pie Graph  8>Exit \nEnter your choice = ");
 		scanf("%d", &choice);
 		switch(choice){
 			case 1:
@@ -59,13 +59,16 @@ void choice_1(struct arr_col_1 arr1[], int row){
 				draw_curve_graph_col_1(arr1, row);
 				break;
 			case 7:
+				draw_pie_graph_col_1(arr1, row);
+				break;
+			case 8:
 				printf("Exitting.....");
 				exit(0);
 			default:
 				printf("Please Enter Correct coice...");
 				break;
 		}
-	}while(choice != 7);
+	}while(choice != 8);
 
 }
 
@@ -73,7 +76,7 @@ void choice_2(struct arr_col_2 arr2[], int row){
 	int choice;
 	do{
 		clrscr();
-		printf("\n1>Bar Graph \t2>Line Graph \t3>Bar with line Graph \n4>Point with graph \t5>Point graph \t6>Curve Graph \t6>Exit \nEnter your choice = ");
+		printf("1>Bar Graph 2>Line Graph 3>Bar with line Graph 4>Point with graph 5>Point graph 6>Curve Graph 7>Pie Graph 8>Exit \nEnter your choice = ");
 		scanf("%d", &choice);
 		switch(choice){
 			case 1:
@@ -95,12 +98,15 @@ void choice_2(struct arr_col_2 arr2[], int row){
 				draw_curve_graph_col_2(arr2, row);
 				break;
 			case 7:
+				draw_pie_graph_col_2(arr2, row);
+				break;
+			case 8:
 				printf("Exitting.....");
 				exit(0);
 			default:
 				printf("Please Enter Correct coice...");
 				break;
 		}
-	}while(choice != 7);
+	}while(choice != 8);
 
 }
