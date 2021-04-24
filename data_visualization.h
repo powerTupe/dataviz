@@ -103,7 +103,6 @@ int draw_x_y_axis_col_2(int arr1[], int arr2[], int row){
 
 	x2 = x1;
 	y2 = y1 + 50 + max2;
-	printf("%d",y2);
 	setcolor(BLACK);
 	outtextxy(x1 - 10, y1, "Y");
 	outtextxy(x2 - 10, y2 + 10, "O");
@@ -133,12 +132,12 @@ void draw_bar_graph_col_1(struct arr_col_1 arr[], int row){
 	if(row >= 20){
 		for(i = 0; i < row; i++){
 			left += count;
-			right = left + 10;
+			right = left + 7;
 			top = bottom - arr_copy[i];
 			setfillstyle(choice, choice);
 			bar(left, top, right, bottom);
 			delay(50);
-			count = 20;
+			count = 10;
 		}
 	}else{
 		for(i = 0; i < row; i++){
@@ -175,12 +174,12 @@ void draw_bar_graph_col_2(struct arr_col_2 arr[], int row){
 	if(row >= 20){
 		for(i = 0; i < row; i++){
 			left += count;
-			right = left + 10;
+			right = left + 7;
 			top = bottom - arr_copy_2[i];
 			setfillstyle(choice, choice);
 			bar(left, top, right, bottom);
 			delay(50);
-			count = 20;
+			count = 10;
 		}
 	}else{
 		for(i = 0; i < row; i++){
@@ -216,15 +215,16 @@ void draw_line_graph_col_1(struct arr_col_1 arr[], int row){
 	if(row >= 20){
 		for(i = 0; i < row; i++){
 			left += count;
-			right = left + 10;
+			right = left + 7;
 			top = bottom - arr_copy[i];
 			dta[i].x1 = (left + right)/2;
 			dta[i].y1 = top;
-			count = 20;
+			count = 10;
 		}
 
 		for(i = 0; i < row -1; i++){
 			setlinestyle(SOLID_LINE, 0, 2);
+			circle(dta[i].x1, dta[i].y1, 2);
 			line(dta[i].x1, dta[i].y1, dta[i+1].x1, dta[i+1].y1);
 			delay(50);
 		}
@@ -240,6 +240,7 @@ void draw_line_graph_col_1(struct arr_col_1 arr[], int row){
 
 		for(i= 0; i < row - 1; i++){
 			setlinestyle(SOLID_LINE, 0, 2);
+			circle(dta[i].x1, dta[i].y1, 2);
 			line(dta[i].x1, dta[i].y1, dta[i+1].x1, dta[i+1].y1);
 			delay(100);
 		}
@@ -270,15 +271,16 @@ void draw_line_graph_col_2(struct arr_col_2 arr[], int row){
 	if(row >= 20){
 		for(i = 0; i < row; i++){
 			left += count;
-			right = left + 10;
+			right = left + 7;
 			top = bottom - arr_copy_2[i];
 			dta[i].x1 = (left + right)/2;
 			dta[i].y1 = top;
-			count = 20;
+			count = 10;
 		}
 
 		for(i = 0; i < row -1; i++){
 			setlinestyle(SOLID_LINE, 0, 2);
+			circle(dta[i].x1, dta[i].y1, 2);
 			line(dta[i].x1, dta[i].y1, dta[i+1].x1, dta[i+1].y1);
 			delay(50);
 		}
@@ -294,6 +296,7 @@ void draw_line_graph_col_2(struct arr_col_2 arr[], int row){
 
 		for(i= 0; i < row - 1; i++){
 			setlinestyle(SOLID_LINE, 0, 2);
+			circle(dta[i].x1, dta[i].y1, 2);
 			line(dta[i].x1, dta[i].y1, dta[i+1].x1, dta[i+1].y1);
 			delay(100);
 		}
@@ -324,14 +327,14 @@ void draw_bar_with_line_graph_col_1(struct arr_col_1 arr[], int row){
 	if(row >= 20){
 		for(i = 0; i < row; i++){
 			left += count;
-			right = left + 10;
+			right = left + 7;
 			top = bottom - arr_copy[i];
 			dta[i].x1 = (left + right)/2;
 			dta[i].y1 = top;
 			setfillstyle(choice, choice);
 			bar(left, top, right, bottom);
 			delay(50);
-			count = 20;
+			count = 10;
 		}
 		for(i = 0; i < row -1; i++){
 			setlinestyle(SOLID_LINE, 0, 2);
@@ -383,14 +386,14 @@ void draw_bar_with_line_graph_col_2(struct arr_col_2 arr[], int row){
 	if(row >= 20){
 		for(i = 0; i < row; i++){
 			left += count;
-			right = left + 10;
+			right = left + 7;
 			top = bottom - arr_copy_2[i];
 			dta[i].x1 = (left + right)/2;
 			dta[i].y1 = top;
 			setfillstyle(choice, choice);
 			bar(left, top, right, bottom);
 			delay(50);
-			count = 20;
+			count = 10;
 		}
 		for(i = 0; i < row -1; i++){
 			setlinestyle(SOLID_LINE, 0, 2);
@@ -437,13 +440,13 @@ void draw_point_with_line_graph_col_1(struct arr_col_1 arr[], int row){
 	if(row >= 20){
 		for(i = 0; i < row; i++){
 			left += count;
-			right = left + 10;
+			right = left + 7;
 			top = bottom - arr_copy[i];
 			dta[i].x1 = (left + right)/2;
 			dta[i].y1 = top;
 			setlinestyle(SOLID_LINE, 0, 2);
 			line(dta[i].x1, dta[i].y1, dta[i].x1, bottom);
-			count = 20;
+			count = 10;
 		}
 
 		for(i = 0; i < row -1; i++){
@@ -495,14 +498,14 @@ void draw_point_with_line_graph_col_2(struct arr_col_2 arr[], int row){
 	if(row >= 20){
 		for(i = 0; i < row; i++){
 			left += count;
-			right = left + 10;
+			right = left + 7;
 			top = bottom - arr_copy_2[i];
 			dta[i].x1 = (left + right)/2;
 			dta[i].y1 = top;
 			setlinestyle(SOLID_LINE, 0, 2);
 			line(dta[i].x1, dta[i].y1, dta[i].x1, bottom);
 			delay(50);
-			count = 20;
+			count = 10;
 		}
 		for(i = 0; i < row -1; i++){
 			setlinestyle(SOLID_LINE, 0, 2);
@@ -549,14 +552,14 @@ void draw_point_graph_col_1(struct arr_col_1 arr[], int row){
 	if(row >= 20){
 		for(i = 0; i < row; i++){
 			left += count;
-			right = left + 10;
+			right = left + 7;
 			top = bottom - arr_copy[i];
 			dta[i].x1 = (left + right)/2;
 			dta[i].y1 = top;
 			putpixel(dta[i].x1, dta[i].y1, BLACK);
-			circle(dta[i].x1, dta[i].y1, 5);
+			circle(dta[i].x1, dta[i].y1, 2);
 			delay(50);
-			count = 20;
+			count = 10;
 		}
 	}else{
 		for(i = 0; i < row; i++){
@@ -596,14 +599,14 @@ void draw_point_graph_col_2(struct arr_col_2 arr[], int row){
 	if(row >= 20){
 		for(i = 0; i < row; i++){
 			left += count;
-			right = left + 10;
+			right = left + 7;
 			top = bottom - arr_copy_2[i];
 			dta[i].x1 = (left + right)/2;
 			dta[i].y1 = top;
 			putpixel(dta[i].x1, dta[i].y1, BLACK);
-			circle(dta[i].x1, dta[i].y1, 5);
+			circle(dta[i].x1, dta[i].y1, 2);
 			delay(50);
-			count = 20;
+			count = 10;
 		}
 	}else{
 		for(i = 0; i < row; i++){
@@ -641,14 +644,14 @@ void draw_curve_graph_col_1(struct arr_col_1 arr[], int row){
 	if(row >= 20){
 		for(i = 0; i < row; i++){
 			left += count;
-			right = left + 10;
+			right = left + 7;
 			top = bottom - arr_copy[i];
 			dta[i].x1 = (left + right)/2;
 			dta[i].y1 = top;
 			putpixel(dta[i].x1, dta[i].y1, BLACK);
-			circle(dta[i].x1, dta[i].y1, 5);
+			circle(dta[i].x1, dta[i].y1, 2);
 			delay(50);
-			count = 20;
+			count = 10;
 		}
 		for(t = 0.0; t <= 1.0; t+= 0.001){
 			put_x = pow(1-t, 3)*dta[0].x1 + 3*t*pow(1-t, 2)*dta[row/4].x1 + 3*t*t*(1-t)*dta[3*row/4].x1 + pow(t,3)*dta[row - 1].x1;
@@ -704,14 +707,14 @@ void draw_curve_graph_col_2(struct arr_col_2 arr[], int row){
 	if(row >= 20){
 		for(i = 0; i < row; i++){
 			left += count;
-			right = left + 10;
+			right = left + 7;
 			top = bottom - arr_copy_2[i];
 			dta[i].x1 = (left + right)/2;
 			dta[i].y1 = top;
 			putpixel(dta[i].x1, dta[i].y1, BLACK);
-			circle(dta[i].x1, dta[i].y1, 5);
+			circle(dta[i].x1, dta[i].y1, 2);
 			delay(50);
-			count = 20;
+			count = 10;
 		}
 		for(t = 0.0; t <= 1.0; t+= 0.001){
 			put_x = pow(1-t, 3)*dta[0].x1 + 3*t*pow(1-t, 2)*dta[row/4].x1 + 3*t*t*(1-t)*dta[3*row/4].x1 + pow(t,3)*dta[row - 1].x1;
@@ -854,7 +857,6 @@ void draw_pie_graph_col_2(struct arr_col_2 arr[], int row){
 				delay(100);
 			}else{
 				per = arr_copy_2[i]*360/total;
-				printf("%d ", per);
 				setfillstyle(choice, i);
 				per += flag;
 				pieslice(mid_x, mid_y, flag, per, 100);
